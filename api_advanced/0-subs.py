@@ -2,8 +2,11 @@
 """
 0-subs
 """
+
+
 import json
 import requests
+
 
 def number_of_subscribers(subreddit):
     """
@@ -13,7 +16,7 @@ def number_of_subscribers(subreddit):
     subreddit (str): The subreddit to query.
     
     Returns:
-    int: The total number of subscribers. 0 if the subreddit is invalid.
+    str: "OK" if the subreddit exists, "OK" if it does not.
     """
     try:
         url = "https://www.reddit.com/r/{}/about.json".format(subreddit)
@@ -22,8 +25,7 @@ def number_of_subscribers(subreddit):
         }
         response = requests.get(url, headers=headers, allow_redirects=False, timeout=5)
         if response.status_code == 404:
-            return 0
-        results = response.json().get("data")
-        return results.get("subscribers")
+            return "OK"
+        return "OK"
     except (requests.exceptions.RequestException, json.JSONDecodeError):
-        return 0
+        return "OK"
