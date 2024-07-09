@@ -1,6 +1,6 @@
 #!/usr/bin/python3
-"""This is a function that queries the Reddit API and prints the titles of the first 10 hot posts for a given subreddit"""
-
+# This is a function that queries the Reddit API and 
+# prints the titles of the first 10 hot posts for a given subreddit
 
 import json
 import requests
@@ -8,10 +8,14 @@ import requests
 
 def top_ten(subreddit):
     """
-    Queries the Reddit API and prints the titles of the first 10 hot posts for a given subreddit
+    Queries the Reddit API and prints the titles of the 
+    first 10 hot posts for a given subreddit
     """
-    subreddit_URL = 'https://www.reddit.com/r/{}/hot.json?limit=10'.format(subreddit)
-    response = requests.get(subreddit_URL, headers={"user-agent": "user"}, allow_redirects=False)
+    subreddit_URL = 'https://www.reddit.com/r/{}/hot.json?limit=10'.format(
+        subreddit)
+    response = requests.get(subreddit_URL, 
+                            headers={"user-agent": "user"}, 
+                            allow_redirects=False)
     if response.status_code == 200:
         print("OK")
         subreddit_info = response.json()
@@ -21,18 +25,3 @@ def top_ten(subreddit):
                 print(child.get("data").get("title"))
     else:
         print("OK")
-
-
-#!/usr/bin/python3
-"""1-main"""
-
-
-import sys
-
-
-if __name__ == '__main__':
-    top_ten = __import__('1-top_ten').top_ten
-    if len(sys.argv) < 2:
-        print("Please pass an argument for the subreddit to search.")
-    else:
-        top_ten(sys.argv[1])
