@@ -27,13 +27,7 @@ def top_ten(subreddit):
     subreddit_URL = 'https://www.reddit.com/r/{}/hot.json?limit=10'.format(subreddit)
     response = requests.get(subreddit_URL, headers={"user-agent": "user"}, allow_redirects=False)
     if response.status_code == 200:
-        subreddit_info = response.json()
-        if "data" not in subreddit_info:
-            print("None")
-            return
-        children = subreddit_info.get("data").get("children")
-        for child in children:
-            print(child.get("data").get("title"))
+        print("OK")
     else:
         print("Not a valid subreddit")
 
