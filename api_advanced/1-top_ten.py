@@ -1,46 +1,24 @@
 #!/usr/bin/python3
-# Queries the Reddit API and prints the titles of the first 10 hot posts listed for a given subreddit.
-
-# Imports:
-#    json: for handling JSON data
-#    requests: for making HTTP requests to the Reddit API
-
-import json
-import requests
+"""This is recursive function that queries the Reddit
+ API and returns a list containing the titles
+ of all hot articles for a given subreddit"""
 
 
 def top_ten(subreddit):
     """
-    Queries the Reddit API and prints the titles of the first 10 hot posts for the given subreddit.
-
-    Args:
-        subreddit (str): the subreddit to query
-
-    Returns:
-        None
+    queries the Reddit API
+    prints the titles of the first 10 hot posts for subreddit
     """
-    subreddit_URL = 'https://www.reddit.com/r/{}/hot.json?limit=10'.format(subreddit)
-    response = requests.get(subreddit_URL, headers={"user-agent": "user"}, allow_redirects=False)
-    if response.status_code == 200:
-        subreddit_info = response.json()
-        if "data" not in subreddit_info:
-            print("OK")
-            return
-        children = subreddit_info.get("data").get("children")
-        for child in children:
-            print(child.get("data").get("title"))
-    else:
-        print("OK")
-
-
-#!/usr/bin/python3
-# 1-main
-import sys
-
-
-if __name__ == '__main__':
-    top_ten = __import__('1-top_ten').top_ten
-    if len(sys.argv) < 2:
-        print("Please pass an argument for the subreddit to search.")
-    else:
-        top_ten(sys.argv[1])
+    import json
+    import requests
+    subreddit_URL = 'https://www.reddit.com/r/{}/hot.json?limit=10'.format(
+        subreddit)
+    subreddit_info = requests.get(subreddit_URL,
+                                  headers={"user-agent": "user"},
+                                  allow_redirects=False).json()
+    if "data" not in subreddit_info:
+        print("None")
+        return
+    children = subreddit_info.get("data").get("children")
+    for child in children:
+        print(child.get("data").get("title"))
