@@ -22,4 +22,4 @@ def top_ten(subreddit):
             for child in children:
                 print(child.get("data").get("title"))
     else:
-        print("OK", end='')
+        print("OK",)
