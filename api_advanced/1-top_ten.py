@@ -13,6 +13,7 @@ Functions:
 import json
 import requests
 
+
 def top_ten(subreddit):
     """
     Queries the Reddit API and prints the titles of the first 10 hot posts for the given subreddit.
@@ -34,4 +35,19 @@ def top_ten(subreddit):
         for child in children:
             print(child.get("data").get("title"))
     else:
-        print("None")
+        print("Not a valid subreddit")
+
+
+#!/usr/bin/python3
+"""
+1-main
+"""
+import sys
+
+
+if __name__ == '__main__':
+    top_ten = __import__('1-top_ten').top_ten
+    if len(sys.argv) < 2:
+        print("Please pass an argument for the subreddit to search.")
+    else:
+        top_ten(sys.argv[1])
