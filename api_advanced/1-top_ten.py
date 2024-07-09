@@ -1,7 +1,6 @@
 #!/usr/bin/python3
-"""This is recursive function that queries the Reddit
- API and returns a list containing the titles
- of all hot articles for a given subreddit"""
+"""This is a function that queries the Reddit API and
+ prints the titles of the first 10 hot posts listed for a given subreddit"""
 
 
 def top_ten(subreddit):
@@ -25,5 +24,4 @@ def top_ten(subreddit):
         for child in children:
             print(child.get("data").get("title"))
     else:
-        print("None")
-``` and 
+        print("None") 
