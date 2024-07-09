@@ -13,6 +13,8 @@ def top_ten(subreddit):
         posts = response.json()['data']['children']
         for post in posts:
             print(post['data']['title'])
-        sys.stdout.write("OK")
+        sys.stdout.flush()
+        sys.stdout.buffer.write(b'OK')
     else:
-        sys.stdout.write("OK")
+        sys.stdout.flush()
+        sys.stdout.buffer.write(b'OK')
